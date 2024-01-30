@@ -4,9 +4,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-def life_expectancy() :
+def predict_life_expectancy(year, bmi, alcohol, country) :
     # 데이터 준비
     data = pd.read_csv('../data/Life Expectancy Data.csv')
     data = data.drop(columns=['Status']) # 모델 학습에 필요없다고 판단되는 'Status' 열 제거
@@ -51,11 +51,11 @@ def life_expectancy() :
     print("Correlation Coefficient:", correlation)
 
     # 상관 계수 시각화
-    plt.scatter(predictions, actual_values)
-    plt.xlabel('Predicted Values')
-    plt.ylabel('Actual Values')
-    plt.title('Correlation between Predictions and Actual Values')
-    plt.show()
+    # plt.scatter(predictions, actual_values)
+    # plt.xlabel('Predicted Values')
+    # plt.ylabel('Actual Values')
+    # plt.title('Correlation between Predictions and Actual Values')
+    # plt.show()
 
     # 모델 평가 (2) : 평균 제곱 오차
     predictions = model.predict(X_test)
@@ -63,7 +63,7 @@ def life_expectancy() :
     print(f"Mean Squared Error: {mse}")
 
     # 사용자 입력
-    user_input = {'Year': 2024, 'BMI': 20, 'Alcohol': 15, 'Country': 'Republic of Korea'}
+    user_input = {'Year': year, 'BMI': bmi, 'Alcohol': alcohol, 'Country': country}
     # display(country_averages.columns)
 
     # 미리 저장해 놓았던 국가별 평균값 추가
@@ -83,7 +83,6 @@ def life_expectancy() :
 
     # 예측 수행
     predicted_life_expectancy = model.predict(user_input_scaled)
-    print(f"예측된 기대 수명: {predicted_life_expectancy[0]}")
 
     # 특성 중요도 확인
     importance = model.feature_importances_
@@ -103,12 +102,14 @@ def life_expectancy() :
     importances = [item[1] for item in sorted_importance]
 
     # 막대 그래프 그리기
-    plt.figure(figsize=(10, 8))
-    plt.barh(features, importances, color='skyblue')
-    plt.xlabel("Expected life expectancy predictors")
-    plt.title("Feature Importance")
-    plt.gca().invert_yaxis()
-    plt.show()
+    # plt.figure(figsize=(10, 8))
+    # plt.barh(features, importances, color='skyblue')
+    # plt.xlabel("Expected life expectancy predictors")
+    # plt.title("Feature Importance")
+    # plt.gca().invert_yaxis()
+    # plt.show()
+
+    return predicted_life_expectancy[0]
 
 
 
