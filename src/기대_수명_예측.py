@@ -50,7 +50,7 @@ def predict_life_expectancy(year, bmi, alcohol, country) :
     correlation = np.corrcoef(predictions, actual_values)
     print("Correlation Coefficient:", correlation)
 
-    # 상관 계수 시각화
+    # 상관 계수 시각화 → 리액트 시각화
     # plt.scatter(predictions, actual_values)
     # plt.xlabel('Predicted Values')
     # plt.ylabel('Actual Values')
@@ -101,7 +101,7 @@ def predict_life_expectancy(year, bmi, alcohol, country) :
     features = [item[0] for item in sorted_importance]
     importances = [item[1] for item in sorted_importance]
 
-    # 막대 그래프 그리기
+    # 막대 그래프 그리기 → 리액트 시각화
     # plt.figure(figsize=(10, 8))
     # plt.barh(features, importances, color='skyblue')
     # plt.xlabel("Expected life expectancy predictors")
@@ -109,7 +109,8 @@ def predict_life_expectancy(year, bmi, alcohol, country) :
     # plt.gca().invert_yaxis()
     # plt.show()
 
-    return predicted_life_expectancy[0]
+    # 기대 수명, 특성 중요도, 상관 계수 반환
+    return predicted_life_expectancy[0], sorted_importance, correlation.tolist()
 
 
 

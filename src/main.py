@@ -18,10 +18,14 @@ def predict_life_expectancy():
     print("리액트로부터 받은 기대 수명 예측 데이터 : " + str(data))
 
     # 예측 모델에 데이터 전달
-    prediction = 기대_수명_예측.predict_life_expectancy(year, bmi, alcohol, country)
+    prediction,feature_importances, correlation = 기대_수명_예측.predict_life_expectancy(year, bmi, alcohol, country)
 
-    # 예측 결과를 JSON 형태로 반환
-    return jsonify({'prediction': prediction})
+    # JSON 형태로 결과 반환
+    return jsonify({
+        'prediction': prediction, # 기대 수명
+        'feature_importances': feature_importances, # 특성 중요도
+        'correlation': correlation # 상관 계수
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
