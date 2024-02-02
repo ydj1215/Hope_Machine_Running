@@ -110,7 +110,7 @@ def predict_life_expectancy(year, bmi, alcohol, country) :
     # plt.show()
 
     # 기대 수명, 특성 중요도, 상관 계수 반환
-    return predicted_life_expectancy[0], sorted_importance, correlation.tolist()
+    return predicted_life_expectancy[0], sorted_importance, correlation.tolist(), predictions.tolist(), actual_values.tolist()
 
 
 
